@@ -2,6 +2,7 @@ package org.example.internship.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlin.collections.List
 
 @Serializable
 @SerialName("list")
@@ -32,13 +33,34 @@ class Image : Component() {
      * Validate is Image specific function which checks the validity of an image.
      */
     override fun validate(): ValidityReport {
-        if (!validImageFormats.contains(src?.split(".")?.get(1) ?: "null")) {
+        var message: String = ""
+        val srcCheck: List<String>? = src?.split(".")
+        val darkSrcCheck: List<String>? = darkSrc?.split(".")
+        if (srcCheck != null && srcCheck.size == 2) {
+            if (!validImageFormats.contains(srcCheck[1])) {
+                isValid = false
+                message += "Unsupported (${srcCheck[1]}) image format. "
+            }
+        } else {
             isValid = false
+            message += "Missing or invalid name of an image ($src). "
         }
         if (children.isNotEmpty()) {
             isValid = false
+            message += "An image should not have children. "
         }
-        return ValidityReport(this, "Something failed", isValid)
+        if (darkSrcCheck != null && darkSrcCheck.size == 2) {
+            if (!validImageFormats.contains(darkSrcCheck[1])) {
+                isValid = false
+                message += "Dark version has unsupported (${darkSrcCheck[1]}) image format. "
+            }
+        } else if (darkSrcCheck != null) {
+            if (darkSrcCheck.size != 2) {
+                isValid = false
+                message += "invalid name of an image ($darkSrc). "
+            }
+        }
+        return ValidityReport(this, message, isValid)
     }
 }
 
