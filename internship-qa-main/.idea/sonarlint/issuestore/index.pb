@@ -7,8 +7,6 @@ O
 jsons-safe/safe-components.json,8\e\8e4f87d048ca1c9dbce199b0770456e63a7a1092
 C
 jsons-unsafe/0.json,f\4\f4f86317df378b4ba8676a2d0d5fd76a9118078f
-n
->src/main/kotlin/org/example/internship/data/InlineComponent.kt,f\f\ffe407457208c6e11077563d23bfcd0e3c659e67
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
 ?
