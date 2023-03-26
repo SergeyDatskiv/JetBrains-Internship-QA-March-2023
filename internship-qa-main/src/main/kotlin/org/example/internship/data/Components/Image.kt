@@ -17,8 +17,8 @@ class Image : Component(), BlockComponent {
      */
     override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
-        val srcCheck: List<String>? = src?.split(".")
-        val darkSrcCheck: List<String>? = darkSrc?.split(".")
+        val srcCheck: kotlin.collections.List<String>? = src?.split(".")
+        val darkSrcCheck: kotlin.collections.List<String>? = darkSrc?.split(".")
         if (srcCheck != null && srcCheck.size == 2) {
             if (!validImageFormats.contains(srcCheck[1])) {
                 isValid = false

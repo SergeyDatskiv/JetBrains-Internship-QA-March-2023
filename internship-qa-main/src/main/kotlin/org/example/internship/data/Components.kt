@@ -17,14 +17,13 @@ class Link : Component(), InlineComponent {
     override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
         var reports: MutableList<ValidityReport> = mutableListOf()
-        var checkProtocol: Boolean = false
         if (href.isNullOrBlank()) {
             isValid = false
             message += "There is no href."
         } else {
             for (protocol in allowedProtocols) {
                 // TODO: Check if URL is valid.
-                checkProtocol = href!!.contains(protocol)
+                var checkProtocol: Boolean = href!!.contains(protocol)
                 if (checkProtocol) {
                     break
                 }
