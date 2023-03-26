@@ -24,11 +24,3 @@ M
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
-H
-src/test/kotlin/Tests.kt,0\5\055f901b58b80a45946d15fed7378c95293994cf
-h
-8src/main/kotlin/org/example/internship/data/Component.kt,a\6\a69f8b253893d5fa7bc71e938944bd451fa063c5
-i
-9src/main/kotlin/org/example/internship/data/Components.kt,f\1\f141e964b5104fdb34ed819f7b5a873300f75829
-Y
-)src/test/kotlin/ComponentTestsProvider.kt,0\0\0021cd7193b288b05e6b0aa02b3c0ebf458d4b56
