@@ -2,7 +2,6 @@ package org.example.internship.data.Components
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import org.example.internship.data.BlockComponent
 
 @Serializable
 @SerialName("list")
