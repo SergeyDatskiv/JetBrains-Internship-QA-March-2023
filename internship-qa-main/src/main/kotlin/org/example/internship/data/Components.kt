@@ -6,7 +6,7 @@ import kotlin.collections.List
 
 @Serializable
 @SerialName("list")
-class List : Component() {
+class List : Component(), BlockComponent {
     var style: String? by Properties()
     var startWith: String? by Properties()
     var bulletType: String? by Properties()
@@ -14,11 +14,11 @@ class List : Component() {
 
 @Serializable
 @SerialName("paragraph")
-class Paragraph : Component()
+class Paragraph : Component(), BlockComponent
 
 @Serializable
 @SerialName("chapter")
-class Chapter : Component() {
+class Chapter : Component(), BlockComponent {
     var title: String? by Properties()
 
     /**
@@ -36,8 +36,18 @@ class Chapter : Component() {
             message += "A chapter does not have children (i.e. empty chapter). "
         } else {
             for (child in children) {
+                if (child !is BlockComponent) {
+                    isValid = false
+                    message += "A child ($child) is not a block component. Only block components are allowed.\n"
+                }
                 var childValidityReport: MutableList<ValidityReport> = child.validate()
                 reports.addAll(childValidityReport)
+                for (childReport in childValidityReport) {
+                    if (!childReport.isValid) {
+                        isValid = false
+                        message += "This child component (${childReport.component}) is invalid.\n"
+                    }
+                }
             }
         }
         reports.add(ValidityReport(this, message, isValid))
@@ -47,7 +57,7 @@ class Chapter : Component() {
 
 @Serializable
 @SerialName("image")
-class Image : Component() {
+class Image : Component(), BlockComponent {
     var src: String? by Properties()
     var darkSrc: String? by Properties()
     var validImageFormats: Set<String> = setOf("png", "jpg", "jpeg", "svg")
