@@ -17,5 +17,3 @@ A
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 l
 <src/main/kotlin/org/example/internship/data/ComponentsDsl.kt,1\e\1e7003484062677c38d19d14b8eed7014b133d23
-j
-:src/main/kotlin/org/example/internship/ComponentsReader.kt,8\3\830c3925e52aa3d4102628998a9f45311f12ddda
