@@ -19,8 +19,3 @@ l
 <src/main/kotlin/org/example/internship/data/ComponentsDsl.kt,1\e\1e7003484062677c38d19d14b8eed7014b133d23
 j
 :src/main/kotlin/org/example/internship/ComponentsReader.kt,8\3\830c3925e52aa3d4102628998a9f45311f12ddda
-M
-src/test/kotlin/TestResult.kt,a\5\a5961ad2e99c6238999c88fe2aa0ff3e0621a1b1
-:
-
-.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
