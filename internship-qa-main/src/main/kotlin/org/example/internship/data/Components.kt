@@ -14,7 +14,36 @@ class List : Component(), BlockComponent {
 
 @Serializable
 @SerialName("paragraph")
-class Paragraph : Component(), BlockComponent
+class Paragraph : Component(), BlockComponent {
+    /**
+     * Validate is Paragraph specific function which checks the validity of a Paragraph.
+     */
+    override fun validate(): MutableList<ValidityReport> {
+        var message: String = ""
+        var reports: MutableList<ValidityReport> = mutableListOf()
+        if (children.size >= 1) {
+            for (child in children) {
+                if (child !is InlineComponent) {
+                    isValid = false
+                    message += "A child ($child) is not an inline component. Only inline components are allowed.\n"
+                }
+                var childValidityReport: MutableList<ValidityReport> = child.validate()
+                reports.addAll(childValidityReport)
+                for (childReport in childValidityReport) {
+                    if (!childReport.isValid) {
+                        isValid = false
+                        message += "This child component (${childReport.component}) is invalid.\n"
+                    }
+                }
+            }
+        } else {
+            isValid = false
+            message += "The paragraph is empty. "
+        }
+        reports.add(ValidityReport(this, message, isValid))
+        return reports
+    }
+}
 
 @Serializable
 @SerialName("chapter")
@@ -22,7 +51,7 @@ class Chapter : Component(), BlockComponent {
     var title: String? by Properties()
 
     /**
-     * Validate is Chapter specific function which checks the validity of an image.
+     * Validate is Chapter specific function which checks the validity of a Chapter.
      */
     override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
@@ -63,7 +92,7 @@ class Image : Component(), BlockComponent {
     var validImageFormats: Set<String> = setOf("png", "jpg", "jpeg", "svg")
 
     /**
-     * Validate is Image specific function which checks the validity of an image.
+     * Validate is Image specific function which checks the validity of an Image.
      */
     override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
@@ -117,6 +146,24 @@ class Text : Component(), InlineComponent {
 
     operator fun String.unaryPlus() {
         value = value?.plus(this) ?: this
+    }
+
+    /**
+     * Validate is text specific function which checks the validity of a text.
+     */
+    override fun validate(): MutableList<ValidityReport> {
+        var message: String = ""
+        var reports: MutableList<ValidityReport> = mutableListOf()
+        if (value.isNullOrBlank()) {
+            isValid = false
+            message += "There is no text."
+        }
+        if (children.size != 0) {
+            isValid = false
+            message += "This component should not have children."
+        }
+        reports.add(ValidityReport(this, message, isValid))
+        return reports
     }
 }
 
