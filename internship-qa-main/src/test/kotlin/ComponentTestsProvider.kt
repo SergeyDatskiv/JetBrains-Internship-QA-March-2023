@@ -12,7 +12,12 @@ abstract class ComponentTestsProvider : ArgumentsProvider {
      * Performs component tests and returns a list of successful and failed tests
      */
     private fun performTests(): List<TestResult> {
-        TODO("Put your solution here")
+        var testResults: MutableList<TestResult> = mutableListOf<TestResult>()
+        for (component in components) {
+            var validityReport: ValidityReport = component.validate()
+            testResults.add(TestResult(validityReport.component, validityReport.description, validityReport.isValid))
+        }
+        return testResults
     }
 
     /*
