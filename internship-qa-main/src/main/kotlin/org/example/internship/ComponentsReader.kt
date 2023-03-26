@@ -17,7 +17,7 @@ import java.nio.file.Path
 object ComponentsReader {
     private val module = SerializersModule {
         polymorphic(Component::class) {
-            subclass(org.example.internship.data.List::class)
+            subclass(org.example.internship.data.Components.List::class)
             subclass(Paragraph::class)
             subclass(Chapter::class)
             subclass(Image::class)

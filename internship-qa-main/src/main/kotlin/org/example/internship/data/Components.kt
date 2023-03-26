@@ -6,14 +6,6 @@ import org.example.internship.data.Components.Component
 import org.example.internship.data.Components.Text
 
 @Serializable
-@SerialName("list")
-class List : Component(), BlockComponent {
-    var style: String? by Properties()
-    var startWith: String? by Properties()
-    var bulletType: String? by Properties()
-}
-
-@Serializable
 @SerialName("format")
 class Format : Component(), InlineComponent {
     var style: String? by Properties()
