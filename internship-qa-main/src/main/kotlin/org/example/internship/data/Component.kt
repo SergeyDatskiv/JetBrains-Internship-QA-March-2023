@@ -10,8 +10,18 @@ import kotlin.reflect.KProperty
 abstract class Component {
     val properties: MutableMap<String, String?> = mutableMapOf<String, String?>().withDefault { null }
     val children: MutableList<Component> = mutableListOf()
+    var isValid: Boolean = true
 
     var id: String? by Properties()
+
+    /**
+     * Generates a validity report for a component.
+     * Overridden in each subclass of a component.
+     */
+    open fun validate(): ValidityReport {
+        isValid = true
+        return ValidityReport(this, "", true)
+    }
 
     operator fun Component.unaryPlus() {
         this@Component.children += this
