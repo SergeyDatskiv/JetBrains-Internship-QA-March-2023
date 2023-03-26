@@ -20,6 +20,29 @@ class Paragraph : Component()
 @SerialName("chapter")
 class Chapter : Component() {
     var title: String? by Properties()
+
+    /**
+     * Validate is Chapter specific function which checks the validity of an image.
+     */
+    override fun validate(): MutableList<ValidityReport> {
+        var message: String = ""
+        var reports: MutableList<ValidityReport> = mutableListOf()
+        if (title.isNullOrBlank()) {
+            isValid = false
+            message += "A chapter is missing a title. "
+        }
+        if (children.size < 1) {
+            isValid = false
+            message += "A chapter does not have children (i.e. empty chapter). "
+        } else {
+            for (child in children) {
+                var childValidityReport: MutableList<ValidityReport> = child.validate()
+                reports.addAll(childValidityReport)
+            }
+        }
+        reports.add(ValidityReport(this, message, isValid))
+        return reports
+    }
 }
 
 @Serializable
@@ -32,7 +55,7 @@ class Image : Component() {
     /**
      * Validate is Image specific function which checks the validity of an image.
      */
-    override fun validate(): ValidityReport {
+    override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
         val srcCheck: List<String>? = src?.split(".")
         val darkSrcCheck: List<String>? = darkSrc?.split(".")
@@ -60,7 +83,7 @@ class Image : Component() {
                 message += "invalid name of an image ($darkSrc). "
             }
         }
-        return ValidityReport(this, message, isValid)
+        return mutableListOf<ValidityReport>(ValidityReport(this, message, isValid))
     }
 }
 

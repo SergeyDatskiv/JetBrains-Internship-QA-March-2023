@@ -18,9 +18,9 @@ abstract class Component {
      * Generates a validity report for a component.
      * Overridden in each subclass of a component.
      */
-    open fun validate(): ValidityReport {
+    open fun validate(): MutableList<ValidityReport> {
         isValid = true
-        return ValidityReport(this, "", true)
+        return mutableListOf<ValidityReport>(ValidityReport(this, "", true))
     }
 
     operator fun Component.unaryPlus() {
