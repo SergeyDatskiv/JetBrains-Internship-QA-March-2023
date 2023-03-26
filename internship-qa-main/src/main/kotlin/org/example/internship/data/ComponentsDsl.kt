@@ -1,5 +1,6 @@
 package org.example.internship.data
 
+import org.example.internship.data.Components.Image
 import org.example.internship.data.Components.Paragraph
 
 fun list(init: List.() -> Unit): List {
