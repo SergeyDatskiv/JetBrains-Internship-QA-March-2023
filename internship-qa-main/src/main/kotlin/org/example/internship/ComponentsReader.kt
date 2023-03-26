@@ -6,6 +6,7 @@ import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
 import org.example.internship.data.*
+import org.example.internship.data.Components.Component
 import java.nio.file.Files
 import java.nio.file.Path
 

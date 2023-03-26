@@ -1,4 +1,4 @@
-import org.example.internship.data.Component
+import org.example.internship.data.Components.Component
 
 /**
  * Describes a test result.

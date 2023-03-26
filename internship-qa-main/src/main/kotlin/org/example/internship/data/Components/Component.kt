@@ -1,8 +1,9 @@
-package org.example.internship.data
+package org.example.internship.data.Components
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
+import org.example.internship.data.ValidityReport
 import kotlin.reflect.KProperty
 
 @Serializable

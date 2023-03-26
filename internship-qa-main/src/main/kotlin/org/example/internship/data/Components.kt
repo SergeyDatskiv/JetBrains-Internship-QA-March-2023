@@ -2,6 +2,7 @@ package org.example.internship.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import org.example.internship.data.Components.Component
 import kotlin.collections.List
 
 @Serializable
