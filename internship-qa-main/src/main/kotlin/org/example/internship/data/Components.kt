@@ -26,6 +26,20 @@ class Chapter : Component() {
 class Image : Component() {
     var src: String? by Properties()
     var darkSrc: String? by Properties()
+    var validImageFormats: Set<String> = setOf("png", "jpg", "jpeg", "svg")
+
+    /**
+     * Validate is Image specific function which checks the validity of an image.
+     */
+    override fun validate(): ValidityReport {
+        if (!validImageFormats.contains(src?.split(".")?.get(1) ?: "null")) {
+            isValid = false
+        }
+        if (children.isNotEmpty()) {
+            isValid = false
+        }
+        return ValidityReport(this, "Something failed", isValid)
+    }
 }
 
 @Serializable
