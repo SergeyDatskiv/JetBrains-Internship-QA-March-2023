@@ -6,13 +6,6 @@ import org.example.internship.data.Components.Component
 import org.example.internship.data.Components.Text
 
 @Serializable
-@SerialName("format")
-class Format : Component(), InlineComponent {
-    var style: String? by Properties()
-    var color: String? by Properties()
-}
-
-@Serializable
 @SerialName("link")
 class Link : Component(), InlineComponent {
     var href: String? by Properties()
