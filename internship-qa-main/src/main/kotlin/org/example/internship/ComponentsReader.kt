@@ -5,11 +5,11 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 import kotlinx.serialization.modules.subclass
-import org.example.internship.data.*
 import org.example.internship.data.Components.Chapter
 import org.example.internship.data.Components.Component
 import org.example.internship.data.Components.Format
 import org.example.internship.data.Components.Image
+import org.example.internship.data.Components.Link
 import org.example.internship.data.Components.Paragraph
 import org.example.internship.data.Components.Text
 import java.nio.file.Files
