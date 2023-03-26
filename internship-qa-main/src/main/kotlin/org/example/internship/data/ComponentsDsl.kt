@@ -1,5 +1,6 @@
 package org.example.internship.data
 
+import org.example.internship.data.Components.Chapter
 import org.example.internship.data.Components.Image
 import org.example.internship.data.Components.Paragraph
 import org.example.internship.data.Components.Text
