@@ -1,0 +1,34 @@
+
+9
+	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+C
+jsons-unsafe/1.json,d\9\d9831ea2ae72a5acbf82b5ad7c11b52a1c377e43
+O
+jsons-safe/safe-components.json,8\e\8e4f87d048ca1c9dbce199b0770456e63a7a1092
+C
+jsons-unsafe/0.json,f\4\f4f86317df378b4ba8676a2d0d5fd76a9118078f
+n
+>src/main/kotlin/org/example/internship/data/InlineComponent.kt,f\f\ffe407457208c6e11077563d23bfcd0e3c659e67
+A
+gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+?
+settings.gradle,0\5\05efc8b1657769a27696d478ded1e95f38737233
+<
+build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
+l
+<src/main/kotlin/org/example/internship/data/ComponentsDsl.kt,1\e\1e7003484062677c38d19d14b8eed7014b133d23
+j
+:src/main/kotlin/org/example/internship/ComponentsReader.kt,8\3\830c3925e52aa3d4102628998a9f45311f12ddda
+M
+src/test/kotlin/TestResult.kt,a\5\a5961ad2e99c6238999c88fe2aa0ff3e0621a1b1
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+H
+src/test/kotlin/Tests.kt,0\5\055f901b58b80a45946d15fed7378c95293994cf
+h
+8src/main/kotlin/org/example/internship/data/Component.kt,a\6\a69f8b253893d5fa7bc71e938944bd451fa063c5
+i
+9src/main/kotlin/org/example/internship/data/Components.kt,f\1\f141e964b5104fdb34ed819f7b5a873300f75829
+Y
+)src/test/kotlin/ComponentTestsProvider.kt,0\0\0021cd7193b288b05e6b0aa02b3c0ebf458d4b56
