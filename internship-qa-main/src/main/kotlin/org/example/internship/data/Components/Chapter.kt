@@ -70,19 +70,30 @@ class Chapter : Component(), BlockComponent {
 
     /**
      * [checkEachChild] checks validity of individual child component.
+     * [childIsBlockComponent] checks if a child is of [BlockComponent] type.
      * [generateChildValidityReports] generates a [ValidityReport] for each child.
      * Returns an informative message.
      */
     private fun checkEachChild(message: String, reports: MutableList<ValidityReport>): String {
         var outputMessage = message
         for (child in children) {
-            if (child !is BlockComponent) {
-                outputMessage = invalidate(
-                    outputMessage,
-                    "A child ($child) is not a block component. Only block components are allowed.\n"
-                )
-            }
+            outputMessage = childIsBlockComponent(child, outputMessage)
             outputMessage = generateChildValidityReports(child, reports, outputMessage)
+        }
+        return outputMessage
+    }
+
+    /**
+     * [childIsBlockComponent] checks if a child is of [BlockComponent] type.
+     * Returns an informative message.
+     */
+    private fun childIsBlockComponent(child: Component, message: String): String {
+        var outputMessage = message
+        if (child !is BlockComponent) {
+            outputMessage = invalidate(
+                outputMessage,
+                "A child ($child) is not a block component. Only block components are allowed.\n"
+            )
         }
         return outputMessage
     }
