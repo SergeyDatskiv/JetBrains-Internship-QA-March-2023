@@ -4,6 +4,10 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.example.internship.data.ValidityReport
 
+// Message constants.
+private const val EMPTY_TEXT = "There is no text."
+private const val HAS_CHILDREN = "This component should not have children."
+
 @Serializable
 @SerialName("text")
 class Text : Component(), InlineComponent {
@@ -14,20 +18,41 @@ class Text : Component(), InlineComponent {
     }
 
     /**
-     * Validate is text specific function which checks the validity of a text.
+     * [validate] is Text specific function which checks the validity of a Text.
+     * [checkTextNotEmpty] checks that Text is not empty.
+     * [checkNoChildren] checks that Text component does not have children.
+     * Returns a MutableList of [ValidityReport].
      */
     override fun validate(): MutableList<ValidityReport> {
-        var message: String = ""
-        var reports: MutableList<ValidityReport> = mutableListOf()
-        if (value.isNullOrBlank()) {
-            isValid = false
-            message += "There is no text."
-        }
-        if (children.size != 0) {
-            isValid = false
-            message += "This component should not have children."
-        }
+        var message = ""
+        val reports: MutableList<ValidityReport> = mutableListOf()
+        message = checkTextNotEmpty(message)
+        message = checkNoChildren(message)
         reports.add(ValidityReport(this, message, isValid))
         return reports
+    }
+
+    /**
+     * [checkTextNotEmpty] checks that Text is not empty.
+     * Returns an informative message.
+     */
+    private fun checkNoChildren(message: String): String {
+        var outputMessage = message
+        if (children.size != 0) {
+            outputMessage = invalidate(outputMessage, HAS_CHILDREN)
+        }
+        return outputMessage
+    }
+
+    /**
+     * [checkNoChildren] checks that Text component does not have children.
+     * Returns an informative message.
+     */
+    private fun checkTextNotEmpty(message: String): String {
+        var outputMessage = message
+        if (value.isNullOrBlank()) {
+            outputMessage = invalidate(outputMessage, EMPTY_TEXT)
+        }
+        return outputMessage
     }
 }
