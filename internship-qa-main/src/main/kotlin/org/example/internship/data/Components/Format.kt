@@ -63,6 +63,8 @@ class Format : Component(), InlineComponent {
                 outputMessage = invalidate(outputMessage, UNSPECIFIED_COLOR)
             } else if (color!!.length != HEX_LENGTH) {
                 // TODO: Check that it is hexadecimal, not just length.
+                // I validated link URL using regex, it did not give me more failed tests in unsafe JSON.
+                // I am not sure if checking for hexadecimals is needed.
                 outputMessage = invalidate(outputMessage, "Current color format ($color) is not hexadecimal.")
             }
         }
