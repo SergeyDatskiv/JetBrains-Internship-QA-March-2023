@@ -87,24 +87,24 @@ class Format : Component(), InlineComponent {
 
     /**
      * [checkEachChild] checks validity of individual child component.
-     * [checkChileTextType] checks if a child is of [Text] type.
+     * [checkChildTextType] checks if a child is of [Text] type.
      * [generateChildValidityReports] generates a [ValidityReport] for each child.
      * Returns an informative message.
      */
     private fun checkEachChild(message: String, reports: MutableList<ValidityReport>): String {
         var outputMessage = message
         for (child in children) {
-            outputMessage = checkChileTextType(child, outputMessage)
+            outputMessage = checkChildTextType(child, outputMessage)
             outputMessage = generateChildValidityReports(child, reports, outputMessage)
         }
         return outputMessage
     }
 
     /**
-     * [checkChileTextType] checks if a child is of [Text] type.
+     * [checkChildTextType] checks if a child is of [Text] type.
      * Returns an informative message.
      */
-    private fun checkChileTextType(child: Component, message: String): String {
+    private fun checkChildTextType(child: Component, message: String): String {
         var outputMessage = message
         if (child !is Text) {
             outputMessage = invalidate(
