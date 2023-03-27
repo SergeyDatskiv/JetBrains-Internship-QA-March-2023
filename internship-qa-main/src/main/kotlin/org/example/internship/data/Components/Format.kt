@@ -17,6 +17,10 @@ class Format : Component(), InlineComponent {
     override fun validate(): MutableList<ValidityReport> {
         var message: String = ""
         var reports: MutableList<ValidityReport> = mutableListOf()
+        if (style.isNullOrBlank()) {
+            isValid = false
+            message += "Missing format style. "
+        }
         if (!allowedStyles.contains(style)) {
             isValid = false
             message += "This style ($style) is not supported. "
