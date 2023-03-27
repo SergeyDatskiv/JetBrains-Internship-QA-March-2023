@@ -41,6 +41,7 @@ class Image : Component(), BlockComponent {
      * The image format is supported by [validImageFormats].
      * Checks that a source is specified for an Image.
      * Also checks if a name of an image does not have ".".
+     * Returns an informative message.
      */
     private fun checkSrcImage(srcCheck: List<String>?, message: String): String {
         var outputMessage = message
@@ -71,6 +72,7 @@ class Image : Component(), BlockComponent {
      * [checkDarkSrcImage] checks if the dark source image adheres to the requirements.
      * The image format is supported by [validImageFormats].
      * Also checks if a name of an image does not have ".".
+     * Returns an informative message.
      */
     private fun checkDarkSrcImage(darkSrcCheck: List<String>?, message: String): String {
         var outputMessage = message
