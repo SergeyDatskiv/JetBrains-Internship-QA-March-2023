@@ -3,6 +3,8 @@ package org.example.internship.data.Components
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import org.example.internship.data.ValidityReport
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 // Message constants.
 private const val MISSING_HREF = "There is no href."
@@ -10,6 +12,14 @@ private const val EMPTY_LINK = "The link is empty. "
 private const val AT_LEAST_ONE_CHILD = 1
 private const val HTTP = "http"
 private const val HTTPS = "https"
+// Source: https://www.geeksforgeeks.org/check-if-an-url-is-valid-or-not-using-regular-expression/
+private const val URL_REGEX = (
+    "((http|https)://)(www.)?" +
+        "[a-zA-Z0-9@:%._\\+~#?&//=]" +
+        "{2,256}\\.[a-z]" +
+        "{2,6}\\b([-a-zA-Z0-9@:%" +
+        "._\\+~#?&//=]*)"
+    )
 
 @Serializable
 @SerialName("link")
@@ -41,14 +51,31 @@ class Link : Component(), InlineComponent {
         if (href.isNullOrBlank()) {
             outputMessage = invalidate(outputMessage, MISSING_HREF)
         } else {
-            for (protocol in allowedProtocols) {
-                // TODO: Check if URL is valid.
-                val checkProtocol: Boolean = href!!.contains(protocol)
-                if (checkProtocol) {
-                    break
-                }
-                outputMessage = invalidate(outputMessage, "The protocol of a link is not http or https. ($href) ")
+            // URL validation is inspired by https://www.geeksforgeeks.org/check-if-an-url-is-valid-or-not-using-regular-expression/.
+            val p: Pattern = Pattern.compile(URL_REGEX)
+            val match: Matcher = p.matcher(href)
+            if (!match.matches()) {
+                outputMessage = invalidate(outputMessage, "Invalid URL. ($href) ")
+                return outputMessage
             }
+            outputMessage = checkHrefProtocols(outputMessage)
+        }
+        return outputMessage
+    }
+
+    /**
+     * [checkHrefProtocols] checks if allowed protocol is used.
+     * This function could be changed/removed since protocls can be checked in regex.
+     * Returns an informative message.
+     */
+    private fun checkHrefProtocols(message: String): String {
+        var outputMessage = message
+        for (protocol in allowedProtocols) {
+            val checkProtocol: Boolean = href!!.contains(protocol)
+            if (checkProtocol) {
+                break
+            }
+            outputMessage = invalidate(outputMessage, "The protocol of a link is not http or https. ($href) ")
         }
         return outputMessage
     }
