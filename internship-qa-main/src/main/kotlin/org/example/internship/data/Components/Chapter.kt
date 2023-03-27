@@ -30,16 +30,6 @@ class Chapter : Component(), BlockComponent {
     }
 
     /**
-     * [invalidate] is a function that sets the [isValid] variable to false.
-     * It also appends a specified [errorMessage] to the [inputMessage].
-     * Returns an informative message.
-     */
-    private fun invalidate(inputMessage: String, errorMessage: String): String {
-        isValid = false
-        return inputMessage + errorMessage
-    }
-
-    /**
      * [checkTitle] is a function that checks the validity of a title.
      * If invalid sets [isValid] to false and appends a corresponding [MISSING_TITLE] message.
      * Returns an informative message.
@@ -94,27 +84,6 @@ class Chapter : Component(), BlockComponent {
                 outputMessage,
                 "A child ($child) is not a block component. Only block components are allowed.\n"
             )
-        }
-        return outputMessage
-    }
-
-    /**
-     * [generateChildValidityReports] generates a [ValidityReport] for each child.
-     * Returns an informative message.
-     */
-    private fun generateChildValidityReports(
-        child: Component,
-        reports: MutableList<ValidityReport>,
-        message: String
-    ): String {
-        var outputMessage = message
-        val childValidityReport: MutableList<ValidityReport> = child.validate()
-        reports.addAll(childValidityReport)
-        for (childReport in childValidityReport) {
-            if (!childReport.isValid) {
-                outputMessage =
-                    invalidate(outputMessage, "This child component (${childReport.component}) is invalid.\n")
-            }
         }
         return outputMessage
     }

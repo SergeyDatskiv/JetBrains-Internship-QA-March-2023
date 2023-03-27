@@ -37,16 +37,6 @@ class Image : Component(), BlockComponent {
     }
 
     /**
-     * [invalidate] is a function that sets the [isValid] variable to false.
-     * It also appends a specified [errorMessage] to the [inputMessage].
-     * Returns an informative message.
-     */
-    private fun invalidate(inputMessage: String, errorMessage: String): String {
-        isValid = false
-        return inputMessage + errorMessage
-    }
-
-    /**
      * [checkSrcImage] checks if the dark source image adheres to the requirements.
      * The image format is supported by [validImageFormats].
      * Checks that a source is specified for an Image.
