@@ -12,9 +12,9 @@ abstract class ComponentTestsProvider : ArgumentsProvider {
      * Performs component tests and returns a list of successful and failed tests
      */
     private fun performTests(): List<TestResult> {
-        var testResults: MutableList<TestResult> = mutableListOf<TestResult>()
+        val testResults: MutableList<TestResult> = mutableListOf()
         for (component in components) {
-            var validityReport: MutableList<ValidityReport> = component.validate()
+            val validityReport: MutableList<ValidityReport> = component.validate()
             for (report in validityReport) {
                 testResults.add(TestResult(report.component, report.description, report.isValid))
             }
