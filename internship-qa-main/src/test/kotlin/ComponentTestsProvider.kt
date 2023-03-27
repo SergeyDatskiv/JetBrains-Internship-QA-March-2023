@@ -14,6 +14,7 @@ abstract class ComponentTestsProvider : ArgumentsProvider {
     private fun performTests(): List<TestResult> {
         val testResults: MutableList<TestResult> = mutableListOf()
         for (component in components) {
+            // Most of the work is in the components package.
             val validityReport: MutableList<ValidityReport> = component.validate()
             for (report in validityReport) {
                 testResults.add(TestResult(report.component, report.description, report.isValid))
